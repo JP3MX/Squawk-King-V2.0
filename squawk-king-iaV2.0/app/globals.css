@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* Cockpit panel palette — grounded in instrument-lighting colors, not decoration */
+  --panel-bg: #0c1013;       /* main deck background, near-black avionics housing */
+  --panel-raised: #141a1e;   /* placard / card surface */
+  --panel-edge: #262f35;     /* hairline rivet-seam borders */
+  --text-primary: #e7ece9;   /* engraved placard text */
+  --text-dim: #7c8a8f;       /* secondary readouts */
+  --amber: #ffb300;          /* caution / primary accent — instrument amber */
+  --amber-dim: #8a5f10;
+  --green: #35d488;          /* active / go / confirmed */
+  --red: #ff4d4d;            /* warning / no-source-found */
+}
+
+@theme inline {
+  --color-background: var(--panel-bg);
+  --color-foreground: var(--text-primary);
+  --font-sans: "Oswald", ui-sans-serif, system-ui;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--panel-bg);
+  background-image:
+    radial-gradient(ellipse at top, rgba(255, 179, 0, 0.05), transparent 60%);
+  color: var(--text-primary);
+  font-family: "Oswald", ui-sans-serif, system-ui;
+}
+
+/* Utility classes used throughout — placard/rivet aesthetic instead of rounded cards */
+.deck-panel {
+  background: var(--panel-raised);
+  border: 1px solid var(--panel-edge);
+  position: relative;
+}
+.deck-panel::before,
+.deck-panel::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #3a4147;
+  top: 6px;
+}
+.deck-panel::before { left: 6px; }
+.deck-panel::after { right: 6px; }
+
+.readout-mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
